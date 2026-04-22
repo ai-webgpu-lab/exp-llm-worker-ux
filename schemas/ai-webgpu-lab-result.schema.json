@@ -1,0 +1,564 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-webgpu-lab.github.io/schemas/result.schema.json",
+  "title": "AI WebGPU Lab Result",
+  "type": "object",
+  "required": [
+    "meta",
+    "environment",
+    "workload",
+    "metrics",
+    "status"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "repo",
+        "commit",
+        "timestamp",
+        "track"
+      ],
+      "properties": {
+        "repo": {
+          "type": "string"
+        },
+        "commit": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "owner": {
+          "type": "string"
+        },
+        "track": {
+          "type": "string",
+          "enum": [
+            "graphics",
+            "blackhole",
+            "ml",
+            "llm",
+            "audio",
+            "multimodal",
+            "agent",
+            "benchmark",
+            "integration",
+            "infra",
+            "docs"
+          ]
+        },
+        "scenario": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "environment": {
+      "type": "object",
+      "required": [
+        "browser",
+        "os",
+        "device",
+        "gpu",
+        "backend"
+      ],
+      "properties": {
+        "browser": {
+          "type": "object",
+          "required": [
+            "name",
+            "version"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "os": {
+          "type": "object",
+          "required": [
+            "name",
+            "version"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "device": {
+          "type": "object",
+          "required": [
+            "class"
+          ],
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "class": {
+              "type": "string",
+              "enum": [
+                "desktop-high",
+                "desktop-mid",
+                "laptop",
+                "mobile-high",
+                "mobile-mid",
+                "unknown"
+              ]
+            },
+            "cpu": {
+              "type": "string"
+            },
+            "memory_gb": {
+              "type": "number"
+            },
+            "power_mode": {
+              "type": "string",
+              "enum": [
+                "plugged",
+                "battery",
+                "unknown"
+              ]
+            }
+          },
+          "additionalProperties": false
+        },
+        "gpu": {
+          "type": "object",
+          "properties": {
+            "adapter": {
+              "type": "string"
+            },
+            "required_features": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "limits": {
+              "type": "object",
+              "additionalProperties": {
+                "type": [
+                  "number",
+                  "string",
+                  "boolean",
+                  "null"
+                ]
+              }
+            }
+          },
+          "additionalProperties": true
+        },
+        "backend": {
+          "type": "string",
+          "enum": [
+            "webgpu",
+            "wasm",
+            "webgl",
+            "webnn",
+            "mixed"
+          ]
+        },
+        "fallback_triggered": {
+          "type": "boolean"
+        },
+        "worker_mode": {
+          "type": "string",
+          "enum": [
+            "main",
+            "worker",
+            "shared",
+            "unknown"
+          ]
+        },
+        "cache_state": {
+          "type": "string",
+          "enum": [
+            "cold",
+            "warm",
+            "mixed",
+            "unknown"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "workload": {
+      "type": "object",
+      "required": [
+        "kind",
+        "name",
+        "input_profile"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "graphics",
+            "blackhole",
+            "embeddings",
+            "reranker",
+            "rag",
+            "llm-chat",
+            "stt",
+            "voice",
+            "vlm",
+            "diffusion",
+            "agent"
+          ]
+        },
+        "name": {
+          "type": "string"
+        },
+        "input_profile": {
+          "type": "string"
+        },
+        "model_id": {
+          "type": "string"
+        },
+        "renderer": {
+          "type": "string"
+        },
+        "quantization": {
+          "type": "string"
+        },
+        "resolution": {
+          "type": "string"
+        },
+        "context_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "output_tokens": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "dataset": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "metrics": {
+      "type": "object",
+      "properties": {
+        "common": {
+          "type": "object",
+          "properties": {
+            "time_to_interactive_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "init_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "success_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "peak_memory_note": {
+              "type": "string"
+            },
+            "error_type": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "graphics": {
+          "type": "object",
+          "properties": {
+            "avg_fps": {
+              "type": "number",
+              "minimum": 0
+            },
+            "p95_frametime_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "scene_load_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "resolution_scale": {
+              "type": "number",
+              "minimum": 0
+            },
+            "ray_steps": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "taa_enabled": {
+              "type": "boolean"
+            },
+            "visual_artifact_note": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "embeddings": {
+          "type": "object",
+          "properties": {
+            "docs_per_sec": {
+              "type": "number",
+              "minimum": 0
+            },
+            "queries_per_sec": {
+              "type": "number",
+              "minimum": 0
+            },
+            "p50_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "p95_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "recall_at_10": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "index_build_ms": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "rag": {
+          "type": "object",
+          "properties": {
+            "ingest_ms_per_page": {
+              "type": "number",
+              "minimum": 0
+            },
+            "chunk_count": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "embed_total_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "retrieve_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "rerank_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "answer_ttft_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "answer_total_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "citation_hit_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "llm": {
+          "type": "object",
+          "properties": {
+            "ttft_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "prefill_tok_per_sec": {
+              "type": "number",
+              "minimum": 0
+            },
+            "decode_tok_per_sec": {
+              "type": "number",
+              "minimum": 0
+            },
+            "turn_latency_ms": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "stt": {
+          "type": "object",
+          "properties": {
+            "audio_sec_per_sec": {
+              "type": "number",
+              "minimum": 0
+            },
+            "first_partial_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "final_latency_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "wer": {
+              "type": "number",
+              "minimum": 0
+            },
+            "cer": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        },
+        "voice": {
+          "type": "object",
+          "properties": {
+            "roundtrip_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "interrupt_recovery_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "handsfree_success_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "vlm": {
+          "type": "object",
+          "properties": {
+            "image_preprocess_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "image_to_first_token_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "answer_total_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "accuracy_task_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "diffusion": {
+          "type": "object",
+          "properties": {
+            "sec_per_image": {
+              "type": "number",
+              "minimum": 0
+            },
+            "steps_per_sec": {
+              "type": "number",
+              "minimum": 0
+            },
+            "resolution_success_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "oom_or_fail_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "agent": {
+          "type": "object",
+          "properties": {
+            "task_success_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "avg_step_latency_ms": {
+              "type": "number",
+              "minimum": 0
+            },
+            "tool_call_success_rate": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "user_intervention_count": {
+              "type": "integer",
+              "minimum": 0
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "partial",
+        "failed"
+      ]
+    },
+    "artifacts": {
+      "type": "object",
+      "properties": {
+        "screenshots": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "raw_logs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "deploy_url": {
+          "type": "string"
+        },
+        "related_issue": {
+          "type": "string"
+        },
+        "related_pr": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
