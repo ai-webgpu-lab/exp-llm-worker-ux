@@ -24,7 +24,7 @@
 
 ## 기본 구조
 - `src/` - 구현 코드 또는 baseline 프로토타입
-- `public/` - GitHub Pages placeholder 또는 실제 정적 데모 산출물
+- `public/` - GitHub Pages baseline probe 또는 실제 정적 데모 산출물
 - `reports/raw/` - 원시 측정 결과 JSON/CSV/로그
 - `reports/screenshots/` - 시각 결과 스크린샷
 - `reports/logs/` - 실행 로그와 디버깅 산출물
@@ -40,12 +40,13 @@
 - Repository scaffold initialized
 - Shared result schema copied to `schemas/ai-webgpu-lab-result.schema.json`
 - Shared reporting template copied to `RESULTS.md`
-- GitHub Pages placeholder demo scaffold copied to `public/index.html`
+- GitHub Pages baseline probe copied to `public/index.html`
+- Browser probe logic copied to `public/app.js`
 - GitHub Pages workflow copied to `.github/workflows/deploy-pages.yml`
 
 ## GitHub Pages 운영 메모
 - Pages URL: https://ai-webgpu-lab.github.io/exp-llm-worker-ux/
-- 기본 bootstrap workflow는 `public/` 정적 artifact만 배포합니다.
+- 기본 bootstrap workflow는 `public/` baseline probe 정적 artifact를 배포합니다.
 - 실제 빌드가 필요한 저장소는 install/build 단계와 artifact 경로를 저장소 사양에 맞게 교체해야 합니다.
 
 ## 측정 및 검증 포인트
@@ -63,7 +64,7 @@
 - 실제 사용 스택이 정해지면 이 README에 install/dev/build/test 명령을 추가합니다.
 - 측정 결과는 `reports/raw/`와 `RESULTS.md`에 함께 반영합니다.
 - 브라우저, OS, 디바이스, cache, worker 여부 등 재현 조건을 결과와 같이 기록합니다.
-- Pages를 유지하는 경우 placeholder 또는 workflow를 실제 저장소 동작에 맞게 교체합니다.
+- Pages를 유지하는 경우 baseline probe 또는 workflow를 실제 저장소 동작에 맞게 교체합니다.
 
 ## 완료 기준
 - 핵심 가설에 대한 예/아니오 또는 조건부 결론을 낼 수 있습니다.
