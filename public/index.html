@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>exp-llm-worker-ux Demo</title>
+    <meta name="description" content="worker UX 실험">
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #0b1020;
+        --panel: rgba(12, 18, 36, 0.88);
+        --panel-border: rgba(147, 197, 253, 0.22);
+        --text: #e5eefc;
+        --muted: #9fb3d1;
+        --accent: #7dd3fc;
+        --accent-strong: #38bdf8;
+        --success: #86efac;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top left, rgba(56, 189, 248, 0.22), transparent 32%),
+          radial-gradient(circle at bottom right, rgba(45, 212, 191, 0.18), transparent 30%),
+          linear-gradient(160deg, #050816 0%, #101935 52%, #06111b 100%);
+      }
+
+      main {
+        width: min(960px, calc(100% - 32px));
+        margin: 48px auto;
+        padding: 32px;
+        border: 1px solid var(--panel-border);
+        border-radius: 24px;
+        background: var(--panel);
+        backdrop-filter: blur(16px);
+        box-shadow: 0 32px 72px rgba(0, 0, 0, 0.32);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        margin-bottom: 16px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: rgba(125, 211, 252, 0.12);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0 0 12px;
+        font-size: clamp(32px, 5vw, 56px);
+        line-height: 1.04;
+      }
+
+      p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 16px;
+        margin: 28px 0;
+      }
+
+      .card {
+        padding: 18px;
+        border-radius: 18px;
+        background: rgba(15, 23, 42, 0.74);
+        border: 1px solid rgba(148, 163, 184, 0.16);
+      }
+
+      .label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--muted);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .value {
+        font-size: 18px;
+        font-weight: 600;
+        word-break: break-word;
+      }
+
+      .status {
+        margin-top: 28px;
+        padding: 18px;
+        border-radius: 18px;
+        border: 1px solid rgba(134, 239, 172, 0.18);
+        background: rgba(20, 83, 45, 0.18);
+      }
+
+      .status strong {
+        color: var(--success);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+
+      a.button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 0 18px;
+        border-radius: 999px;
+        color: #04111c;
+        background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      a.link {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      footer {
+        margin-top: 28px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      code {
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">AI WebGPU Lab Demo</div>
+      <h1>exp-llm-worker-ux</h1>
+      <p>worker UX 실험. This GitHub Pages site is the default demo surface for the repository and can be replaced by the first runnable baseline at any time.</p>
+
+      <section class="grid" aria-label="Repository metadata">
+        <article class="card">
+          <span class="label">Track</span>
+          <div class="value">LLM</div>
+        </article>
+        <article class="card">
+          <span class="label">Kind</span>
+          <div class="value">experiment</div>
+        </article>
+        <article class="card">
+          <span class="label">Priority</span>
+          <div class="value">P1</div>
+        </article>
+        <article class="card">
+          <span class="label">Pages URL</span>
+          <div class="value"><a class="link" href="https://ai-webgpu-lab.github.io/exp-llm-worker-ux/">https://ai-webgpu-lab.github.io/exp-llm-worker-ux/</a></div>
+        </article>
+      </section>
+
+      <section class="status" aria-label="Bootstrap status">
+        <strong>Bootstrap status:</strong> Pages-ready placeholder deployed from <code>public/</code>. Replace this page with a real baseline demo when the experiment or app is runnable.
+      </section>
+
+      <div class="actions">
+        <a class="button" href="https://github.com/ai-webgpu-lab/exp-llm-worker-ux">Open Repository</a>
+        <a class="button" href="https://github.com/ai-webgpu-lab/exp-llm-worker-ux/blob/main/README.md">Read README</a>
+        <a class="button" href="https://github.com/ai-webgpu-lab/exp-llm-worker-ux/blob/main/RESULTS.md">View Results</a>
+      </div>
+
+      <footer>
+        Published with GitHub Pages using a custom GitHub Actions workflow from <code>.github/workflows/deploy-pages.yml</code>.
+      </footer>
+    </main>
+  </body>
+</html>
