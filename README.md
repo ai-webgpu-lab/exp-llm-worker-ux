@@ -40,14 +40,25 @@
 - Repository scaffold initialized
 - Shared result schema copied to `schemas/ai-webgpu-lab-result.schema.json`
 - Shared reporting template copied to `RESULTS.md`
-- GitHub Pages baseline probe copied to `public/index.html`
-- Browser probe logic copied to `public/app.js`
+- Repo-specific Pages baseline copied from `repo-scaffolds/repos/exp-llm-worker-ux/`
+- Generated entry point updated in `public/index.html` and related assets
 - GitHub Pages workflow copied to `.github/workflows/deploy-pages.yml`
+
+## 현재 baseline 상태
+- Repository-specific runnable baseline active: LLM worker UX readiness harness comparing dedicated worker and main-thread chat execution with responsiveness metadata
+- Generated override source: `repo-scaffolds/repos/exp-llm-worker-ux/`
+- Results/report scaffold is ready to promote exported JSON into `reports/raw/` and `RESULTS.md`
 
 ## GitHub Pages 운영 메모
 - Pages URL: https://ai-webgpu-lab.github.io/exp-llm-worker-ux/
 - 기본 bootstrap workflow는 `public/` baseline probe 정적 artifact를 배포합니다.
 - 실제 빌드가 필요한 저장소는 install/build 단계와 artifact 경로를 저장소 사양에 맞게 교체해야 합니다.
+
+## 조직 상태 대시보드
+- 전체 Pages/demo 상태는 `docs-lab-roadmap/docs/PAGES-STATUS.md`에서 확인합니다.
+- 이 저장소의 live demo는 `https://ai-webgpu-lab.github.io/exp-llm-worker-ux/`입니다.
+- 통합 sketch/adapter 상태는 `docs-lab-roadmap/docs/INTEGRATION-STATUS.md`에서 확인합니다.
+- sketch capabilities는 `docs-lab-roadmap/docs/SKETCH-METRICS.md`에서 확인합니다.
 
 ## 측정 및 검증 포인트
 - first-token or first-result latency, steady-state throughput
